@@ -18,7 +18,9 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	int Player1Score = 0;
 	int Player2Score = 0;
 	private static final int TIMER_DELAY = 5;
-	Timer timer = new Timer(TIMER_DELAY, this);			
+	Timer timer = new Timer(TIMER_DELAY, this);
+	Ball ball;
+	Boolean gameInitialised = false;
 	
 	// Panel constructor
 	public Panel() {
@@ -26,6 +28,9 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	timer.start();
 	}
 	
+	public void createObjects() {
+		ball = new Ball(getWidth(), getHeight());
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);		
@@ -39,13 +44,21 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 							0.0f); //
 		g2d.setStroke(bs);
 		g2d.setColor(Color.WHITE);
-		g2d.drawLine( (getWidth()/2), 0, (getWidth()/2), getHeight() );				
+		g2d.drawLine( (getWidth()/2), 0, (getWidth()/2), getHeight() );
+		paintSprite(g, ball);
 	}
 
-	private static void update(){
-		
+	private void update(){
+		if(!gameInitialised) {
+			createObjects();
+			gameInitialised = true;
+		}
 	}
 	
+	public void paintSprite(Graphics g, Sprite sprite){
+		g.setColor(sprite.getColour());
+		g.fillRect(sprite.getXPos(), sprite.getYPos(), sprite.getWidth(), sprite.getHeight());
+	}
 	
 	@Override
 	public void keyTyped(KeyEvent e) {

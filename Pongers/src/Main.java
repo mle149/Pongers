@@ -6,7 +6,6 @@ public class Main extends JFrame {
 	private final static int WINDOW_WIDTH = 1280;
 	private final static int WINDOW_HEIGHT = 720;
 	
-	
 	// main method
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
