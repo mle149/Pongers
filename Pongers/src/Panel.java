@@ -20,7 +20,9 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	private static final int TIMER_DELAY = 5;
 	Timer timer = new Timer(TIMER_DELAY, this);
 	Ball ball;
-	Boolean gameInitialised = false;
+	GameState gameState = GameState.Initialising;
+	Paddle paddle1;
+	Paddle paddle2;
 	
 	// Panel constructor
 	public Panel() {
@@ -30,6 +32,8 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	
 	public void createObjects() {
 		ball = new Ball(getWidth(), getHeight());
+		paddle1 = new Paddle(Player.One,getWidth(), getHeight());
+		paddle2 = new Paddle(Player.Two,getWidth(), getHeight());
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -45,13 +49,29 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 		g2d.setStroke(bs);
 		g2d.setColor(Color.WHITE);
 		g2d.drawLine( (getWidth()/2), 0, (getWidth()/2), getHeight() );
-		paintSprite(g, ball);
+		if(gameState != GameState.Initialising) {
+			paintSprite(g, ball);
+			paintSprite(g, paddle1);
+			paintSprite(g, paddle2);
+		}
+		
 	}
 
 	private void update(){
-		if(!gameInitialised) {
-			createObjects();
-			gameInitialised = true;
+		switch(gameState) {
+			case Initialising: {
+				createObjects();
+				gameState = gameState.Playing;
+				break;
+			}
+			case Playing: {
+				
+				break;
+			}
+			case GameOver: {
+				
+				break;
+			}
 		}
 	}
 	

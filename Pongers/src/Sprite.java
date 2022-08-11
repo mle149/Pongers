@@ -6,128 +6,87 @@ public class Sprite {
 	private int width;
 	private int xPos;
 	private int yPos;
-	private Color colour = Color.WHITE;
+	private Color colour;
 	private int xVelocity, yVelocity;
 	private int initialXPos, initialYPos;
-	
-	
 
-	/**
-	 * @return the height
-	 */
 	public int getHeight() {
 		return height;
 	}
-	/**
-	 * @param height the height to set
-	 */
+
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	/**
-	 * @return the width
-	 */
+
 	public int getWidth() {
 		return width;
 	}
-	/**
-	 * @param width the width to set
-	 */
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	/**
-	 * @return the xPos
-	 */
+
 	public int getXPos() {
 		return xPos;
 	}
-	/**
-	 * @param xPos the xPos to set
-	 */
+
 	public void setXPos(int xPos) {
 		this.xPos = xPos;
 	}
 	
-	public void setXPos(int xPos, int panelWidth) {
-		this.xPos = xPos;
-		if(xPos - (getWidth()/2) < 0) {
-			setNewXPos(getWidth()/2);
+	public void setXPos(int newX, int panelWidth) {
+		this.xPos = newX;
+		if(xPos < 0) {
+			xPos = 0;
 		}
-		else if (xPos + (getWidth()/2) > panelWidth) {
-			setNewXPos(panelWidth - (getWidth()/2) );
+		else if (xPos + width > panelWidth) {
+			xPos = (panelWidth - width);
 		}
 	}
-	/**
-	 * @return the yPos
-	 */
+
 	public int getYPos() {
 		return yPos;
 	}
-	/**
-	 * @param yPos the yPos to set
-	 */
+
 	public void setYPos(int yPos) {
 		this.yPos = yPos;
 	}
 	
-	public void setYPos(int yPos, int panelHeight) {
-		this.yPos = yPos;
-		if(yPos - (getHeight()/2) < 0) {
-			setNewYPos(getHeight()/2);
+	public void setYPos(int newY, int panelHeight) {
+		this.yPos = newY;
+		if(yPos < 0) {
+			yPos = 0;
 		}
-		else if (yPos + (getHeight()/2) > panelHeight) {
-			setNewYPos(panelHeight - (getHeight()/2) );
+		else if (yPos + height > panelHeight) {
+			yPos = panelHeight - height;
 		}
 	}
 	
-	/**
-	 * @return the xVelocity
-	 */
+
 	public int getXVelocity() {
 		return xVelocity;
 	}
-	/**
-	 * @param xVelocity the xVelocity to set
-	 */
+
 	public void setXVelocity(int xVelocity) {
 		this.xVelocity = xVelocity;
 	}
-	/**
-	 * @return the yVelocity
-	 */
+
 	public int getYVelocity() {
 		return yVelocity;
 	}
-	/**
-	 * @param yVelocity the yVelocity to set
-	 */
+
 	public void setYVelocity(int yVelocity) {
 		this.yVelocity = yVelocity;
 	}
-	/**
-	 * @return the initialXPos
-	 */
-	public int getInitialXPos() {
-		return initialXPos;
+
+	public void setInitialPos(int initialX, int initialY) {
+		initialXPos = initialX;
+		initialYPos = initialY;
 	}
-	/**
-	 * @param initialXPos the initialXPos to set
-	 */
-	public void setInitialXPos(int initialXPos) {
-		this.initialXPos = initialXPos;
-	}
-	/**
-	 * @return the initialYPos
-	 */
-	public int getInitialYPos() {
-		return initialYPos;
-	}
-	/**
-	 * @param initialYPos the initialYPos to set
-	 */
-	public void setInitialYPos(int initialYPos) {
-		this.initialYPos = initialYPos;
+	
+	public void resetToInitialPosition() {
+		setXPos(initialXPos);
+		setYPos(initialYPos);
 	}
 
 	public void setNewXPos(int newX) {
@@ -139,18 +98,13 @@ public class Sprite {
 	}
 	
 	public Rectangle getRectangle(int xPos, int yPos) {
-		Rectangle rect = new Rectangle(getXPos(), getYPos(), getWidth(), getHeight());
-		return rect;	
+		return new Rectangle(getXPos(), getYPos(), getWidth(), getHeight());	
 	}
-	/**
-	 * @return the colour
-	 */
+
 	public Color getColour() {
 		return colour;
 	}
-	/**
-	 * @param colour the colour to set
-	 */
+
 	public void setColour(Color colour) {
 		this.colour = colour;
 	}
