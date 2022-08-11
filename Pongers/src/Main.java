@@ -16,6 +16,10 @@ public class Main extends JFrame {
 		});
 	} // end of main method
 
+	
+	
+	
+	
 	public Main () { //Constructor for JFrame
 				
 		setTitle(FRAME_TITLE);
