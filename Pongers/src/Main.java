@@ -9,8 +9,11 @@ public class Main extends JFrame {
 	
 	// main method
 	public static void main(String[] args) {
-		new Main();
-
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new Main();
+			}
+		});
 	} // end of main method
 
 	public Main () { //Constructor for JFrame

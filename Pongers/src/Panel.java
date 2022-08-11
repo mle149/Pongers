@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
 
 public class Panel extends JPanel implements ActionListener,KeyListener{
 	//variables
@@ -15,12 +17,13 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 	private static final int BALL_SPEED = 3;
 	int Player1Score = 0;
 	int Player2Score = 0;
-	
-	
+	private static final int TIMER_DELAY = 5;
+	Timer timer = new Timer(TIMER_DELAY, this);			
 	
 	// Panel constructor
 	public Panel() {
 	setBackground(Color.BLACK);
+	timer.start();
 	}
 	
 	
@@ -35,11 +38,15 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 							new float[] {16.0f,20.0f}, // Dash pattern 
 							0.0f); //
 		g2d.setStroke(bs);
-		g2d.drawLine( (getWidth()/2), 0, (getWidth()/2), getHeight() );
 		g2d.setColor(Color.WHITE);
-		
+		g2d.drawLine( (getWidth()/2), 0, (getWidth()/2), getHeight() );				
 	}
 
+	private static void update(){
+		
+	}
+	
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -60,7 +67,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		update();
+		repaint();
 	}
 }
