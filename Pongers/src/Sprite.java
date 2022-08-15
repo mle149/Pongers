@@ -97,7 +97,7 @@ public class Sprite {
 		this.yPos = newY;
 	}
 	
-	public Rectangle getRectangle(int xPos, int yPos) {
+	public Rectangle getRectangle() {
 		return new Rectangle(getXPos(), getYPos(), getWidth(), getHeight());	
 	}
 
