@@ -1,6 +1,5 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -161,7 +160,7 @@ public class Panel extends JPanel implements ActionListener,KeyListener{
 		switch(gameState) {
 			case Initialising: {
 				createObjects();
-				gameState = gameState.Playing;
+				gameState = GameState.Playing;
 				ball.setXVelocity(BALL_SPEED);
 				ball.setYVelocity(BALL_SPEED);			
 				break;
